@@ -1,0 +1,47 @@
+---
+title: "P8160_Project_2"
+author: "Bin Yang"
+date: '2023-03-21'
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+We assume, 
+$$Y_i = N(t_i, \boldsymbol{\theta}) + \epsilon_i,$$ where $N(t_i,\boldsymbol{\theta})$ is the Richard growth function and $\epsilon_i's$ are i.i.d $N(0,\sigma^2)$.
+
+We aim to minimize the sum of squared errors:
+
+$$\begin{aligned}
+h(\boldsymbol{\theta}) &= \sum_i(Y_i -  N(t_i, \boldsymbol{\theta}))^2 \\
+&= \sum_{i=1}^n \left[Y_i - a \left\{1 + d\exp\left\{-k(t_i-t_0)\right\}\right\}^{-1/d}\right]^2
+\end{aligned}$$.
+
+By chain rule, calculating the gradient of $h(\boldsymbol{\theta})$ is reduced to calculation of the gradient of $N(t_i,\boldsymbol{\theta})$.
+
+The gradient is: 
+$$\begin{aligned}
+\nabla h(\boldsymbol{\theta})
+ &= \sum_i 2[-Y_i +N(t_i,\boldsymbol{\theta})]\cdot \nabla N(t_i,\boldsymbol{\theta}) \\
+ &= \sum_i 2[-Y_i +N(t_i,\boldsymbol{\theta})]\cdot 
+ \left(
+ \frac{\partial N(t_i,\boldsymbol{\theta})}{\partial a}, 
+ \frac{\partial N(t_i,\boldsymbol{\theta})}{\partial d}, 
+ \frac{\partial N(t_i,\boldsymbol{\theta})}{\partial k}, 
+ \frac{\partial N(t_i,\boldsymbol{\theta})}{\partial t_0}
+ \right) 
+\end{aligned}$$
+
+where:
+$$
+\begin{aligned}
+\frac{\partial N(t_i,\boldsymbol{\theta})}{\partial a} &= (1 + d e^{-k(t-t_0)})^{-1/d}\\
+\frac{\partial N(t_i,\boldsymbol{\theta})}{\partial k} &= -\frac{a (t_0-t) e^{-k(t-t_0)}}{(1 + d e^{-k(t-t_0)})^{1+1/d}} \\
+\frac{\partial N(t_i,\boldsymbol{\theta})}{\partial d} &= -\frac{a(e^{-k(t-t_0)}d - \text{ln}(1+e^{-k(t-t_0)}d)(1 + e^{-k(t-t_0)}d))}{d^2(1 + d e^{-k(t-t_0)})^{1+1/d}} \\
+\frac{\partial N(t_i,\boldsymbol{\theta})}{\partial t_0} &= -\frac{ak e^{-k(t-t_0)}}{(1 + d e^{-k(t-t_0)})^{1+1/d}}
+\end{aligned}
+$$
