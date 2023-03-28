@@ -1,6 +1,7 @@
 
 ### SET UP ---------------------------------------------------------------------
 # load packages
+library(lubridate)
 library(tidyverse)
 theme_set(
   theme_bw()
@@ -44,7 +45,7 @@ N <- function(t_i, theta) {
 
 # we'll just use the city-wide, first-wave data for our cum case count input into the algo
 start_date <- "2020-02-29"
-end_date <- "2020-06-01"
+end_date <- "2020-09-14"
 df_wave <- df %>%
   filter(date >= start_date & date <= end_date) %>%
   select(date:case_count) %>%
