@@ -1,0 +1,17 @@
+Introduction (Ting-Hsuan)
+-Objectives
+-Richard curve
+
+Task 1.1
+-Algorithm development (Anja)
+
+Task 1.2
+-Results for cases in each borough and wave (Bin)
+-Results for hospitalization (Serena)
+-Results for death (Safiya)
+
+Task 1.3
+-Examine fitted curves for cases, hospitalizations, deaths
+ to answer question
+
+Main takeaways
