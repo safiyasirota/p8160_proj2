@@ -440,7 +440,7 @@ death_wave2_nyc_ext <- df_wave2_nyc_ext %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
   geom_line(aes(y = Y_i_hat_final, color = "red")) +
-  labs(title = "New York City", x ="Days (since Sep 15, 2020)", y = "Cumulative cases") +
+  labs(title = "New York City", x ="Days (since Sep 15, 2020)", y = "Cumulative deaths") +
   theme(legend.position = "none") +
   coord_cartesian(xlim = c(0, 300))
 ```
@@ -461,16 +461,21 @@ more_data <- tibble(date = more_days, t_i = more_times, Y_i = Ys)
 # Adding data to current data set
 df_wave2_bx_ext <- rbind(df_wave2_bx, more_data)
 
+# Saving population value
+pop_bx <- 1472654
+
+# Making new plot
 death_wave2_bx_ext <- df_wave2_bx_ext %>%
   mutate(
     Y_i_hat_final = N(t_i, final_bx2)
   ) %>%
   ggplot(aes(x = t_i)) + 
-  geom_point(aes(y = Y_i), size = 1) +
-  geom_line(aes(y = Y_i_hat_final, color = "red")) +
-  labs(title = "Bronx", x ="Days (since Sep 15, 2020)", y = "Cumulative cases") +
+  geom_point(aes(y = (Y_i/pop_bx)*100000), size = 1) +
+  geom_line(aes(y = (Y_i_hat_final/pop_bx)*100000), color = "red") +
+  labs(title = "Bronx", x ="Days (since Sep 15, 2020)", 
+       y = "Cumulative deaths per 100,000 capita") +
   theme(legend.position = "none") +
-  coord_cartesian(xlim = c(0, 300))
+  coord_cartesian(xlim = c(0, 300), ylim = c(0, 45))
 ```
 
 ## BK extended curve
@@ -489,16 +494,21 @@ more_data <- tibble(date = more_days, t_i = more_times, Y_i = Ys)
 # Adding data to current data set
 df_wave2_bk_ext <- rbind(df_wave2_bk, more_data)
 
+# Saving population value
+pop_bk <- 2736074
+
+# Making new plot
 death_wave2_bk_ext <- df_wave2_bk_ext %>%
   mutate(
     Y_i_hat_final = N(t_i, final_bk2)
   ) %>%
   ggplot(aes(x = t_i)) + 
-  geom_point(aes(y = Y_i), size = 1) +
-  geom_line(aes(y = Y_i_hat_final, color = "red")) +
-  labs(title = "Brooklyn", x ="Days (since Sep 15, 2020)", y = "Cumulative cases") +
+  geom_point(aes(y = (Y_i/pop_bk)*100000), size = 1) +
+  geom_line(aes(y = (Y_i_hat_final/pop_bk)*100000), color = "red") +
+  labs(title = "Brooklyn", x ="Days (since Sep 15, 2020)", 
+       y = "Cumulative deaths per 100,000 capita") +
   theme(legend.position = "none") +
-  coord_cartesian(xlim = c(0, 300))
+  coord_cartesian(xlim = c(0, 300), ylim = c(0, 45))
 ```
 
 ## MN extended curve
@@ -517,16 +527,21 @@ more_data <- tibble(date = more_days, t_i = more_times, Y_i = Ys)
 # Adding data to current data set
 df_wave2_mn_ext <- rbind(df_wave2_mn, more_data)
 
+# Saving population value
+pop_mn <- 1694251
+
+# Making new plot
 death_wave2_mn_ext <- df_wave2_mn_ext %>%
   mutate(
     Y_i_hat_final = N(t_i, final_mn2)
   ) %>%
   ggplot(aes(x = t_i)) + 
-  geom_point(aes(y = Y_i), size = 1) +
-  geom_line(aes(y = Y_i_hat_final, color = "red")) +
-  labs(title = "Manhattan", x ="Days (since Sep 15, 2020)", y = "Cumulative cases") +
+  geom_point(aes(y = (Y_i/pop_mn)*100000), size = 1) +
+  geom_line(aes(y = (Y_i_hat_final/pop_mn)*100000), color = "red") +
+  labs(title = "Manhattan", x ="Days (since Sep 15, 2020)", 
+       y = "Cumulative deaths per 100,000 capita") +
   theme(legend.position = "none") +
-  coord_cartesian(xlim = c(0, 300))
+  coord_cartesian(xlim = c(0, 300), ylim = c(0, 45))
 ```
 
 ## QN extended curve
@@ -545,16 +560,21 @@ more_data <- tibble(date = more_days, t_i = more_times, Y_i = Ys)
 # Adding data to current data set
 df_wave2_qn_ext <- rbind(df_wave2_qn, more_data)
 
+# Saving population value
+pop_qn <- 2405464
+
+# Making new plot
 death_wave2_qn_ext <- df_wave2_qn_ext %>%
   mutate(
     Y_i_hat_final = N(t_i, final_qn2)
   ) %>%
   ggplot(aes(x = t_i)) + 
-  geom_point(aes(y = Y_i), size = 1) +
-  geom_line(aes(y = Y_i_hat_final, color = "red")) +
-  labs(title = "Queens", x ="Days (since Sep 15, 2020)", y = "Cumulative cases") +
+  geom_point(aes(y = (Y_i/pop_qn)*100000), size = 1) +
+  geom_line(aes(y = (Y_i_hat_final/pop_qn)*100000), color = "red") +
+  labs(title = "Queens", x ="Days (since Sep 15, 2020)", 
+       y = "Cumulative deaths per 100,000 capita") +
   theme(legend.position = "none") +
-  coord_cartesian(xlim = c(0, 300))
+  coord_cartesian(xlim = c(0, 300), ylim = c(0, 45))
 ```
 
 ## SI extended curve
@@ -573,22 +593,27 @@ more_data <- tibble(date = more_days, t_i = more_times, Y_i = Ys)
 # Adding data to current data set
 df_wave2_si_ext <- rbind(df_wave2_si, more_data)
 
+# Saving population value
+pop_si <- 495747
+
+# Making new plot
 death_wave2_si_ext <- df_wave2_si_ext %>%
   mutate(
     Y_i_hat_final = N(t_i, final_si2)
   ) %>%
   ggplot(aes(x = t_i)) + 
-  geom_point(aes(y = Y_i), size = 1) +
-  geom_line(aes(y = Y_i_hat_final, color = "red")) +
-  labs(title = "Staten Island", x ="Days (since Sep 15, 2020)", y = "Cumulative cases") +
+  geom_point(aes(y = (Y_i/pop_si)*100000), size = 1) +
+  geom_line(aes(y = (Y_i_hat_final/pop_si)*100000), color = "red") +
+  labs(title = "Staten Island", x ="Days (since Sep 15, 2020)", 
+       y = "Cumulative deaths per 100,000 capita") +
   theme(legend.position = "none") +
-  coord_cartesian(xlim = c(0, 300))
+  coord_cartesian(xlim = c(0, 300), ylim = c(0, 45))
 ```
 
 ## Showing all extended curves
 
 ```{r}
-ggarrange(death_wave2_nyc_ext, death_wave2_bx_ext, 
+ggarrange(death_wave2_bx_ext, 
           death_wave2_bk_ext, death_wave2_mn_ext, 
           death_wave2_qn_ext, death_wave2_si_ext,  
           nrow = 2, ncol = 3, common.legend = TRUE, legend = "bottom") 

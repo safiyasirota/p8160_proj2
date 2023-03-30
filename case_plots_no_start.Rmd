@@ -19,15 +19,7 @@ source("wave2case.R")
 ### NYC
 
 ```{r}
-case_wave1_nyc <- df_wave %>%
-  mutate(
-    Y_i_hat_final = N(t_i, final)
-  ) %>%
-  ggplot(aes(x = t_i)) + 
-  geom_point(aes(y = Y_i), size = 1) +
-  geom_line(aes(y = Y_i_hat_final, color = "red")) +
-  labs(title = "New York City", x ="Days (since Feb 29, 2020)", y = "Cumulative cases") +
-  theme(legend.position = "none")
+case_wave1_nyc
 ```
 
 ### Bronx
@@ -106,61 +98,55 @@ case_wave2_si
 
 ```{r}
 ggarrange(case_wave1_nyc, case_wave2_nyc + ylab("") + ggtitle(""), 
-          nrow = 1, ncol = 2, 
-          common.legend = TRUE, legend = "bottom")
+          nrow = 1, ncol = 2)
 ```
 
 ### Bronx
 
 ```{r}
 ggarrange(case_wave1_bx, case_wave2_bx + ylab("") + ggtitle(""), 
-          nrow = 1, ncol = 2, 
-          common.legend = TRUE, legend = "bottom")
+          nrow = 1, ncol = 2)
 ```
 
 ### Brooklyn
 
 ```{r}
 ggarrange(case_wave1_bk, case_wave2_bk + ylab("") + ggtitle(""), 
-          nrow = 1, ncol = 2, 
-          common.legend = TRUE, legend = "bottom")
+          nrow = 1, ncol = 2)
 ```
 
 ### Manhattan
 
 ```{r}
 ggarrange(case_wave1_mn, case_wave2_mn + ylab("") + ggtitle(""), 
-          nrow = 1, ncol = 2, 
-          common.legend = TRUE, legend = "bottom")
+          nrow = 1, ncol = 2)
 ```
 
 ### Queens
 
 ```{r}
 ggarrange(case_wave1_qn, case_wave2_qn + ylab("") + ggtitle(""), 
-          nrow = 1, ncol = 2, 
-          common.legend = TRUE, legend = "bottom")
+          nrow = 1, ncol = 2)
 ```
 
 ### Staten Island
 
 ```{r}
 ggarrange(case_wave1_si, case_wave2_si + ylab("") + ggtitle(""), 
-          nrow = 1, ncol = 2, 
-          common.legend = TRUE, legend = "bottom")
+          nrow = 1, ncol = 2)
 ```
 
 
 ## All Wave 1 Plots
 
 ```{r}
-ggarrange(case_wave1_nyc, case_wave1_bx, case_wave1_bk, case_wave1_mn, case_wave1_qn, case_wave1_si,  nrow = 2, ncol = 3, common.legend = TRUE, legend = "bottom") 
+ggarrange(case_wave1_nyc, case_wave1_bx, case_wave1_bk, case_wave1_mn, case_wave1_qn, case_wave1_si,  nrow = 2, ncol = 3)
 ```
 
 ## All Wave 2 Plots
 
 ```{r}
-ggarrange(case_wave2_nyc, case_wave2_bx, case_wave2_bk, case_wave2_mn, case_wave2_qn, case_wave2_si,  nrow = 2, ncol = 3, common.legend = TRUE, legend = "bottom") 
+ggarrange(case_wave2_nyc, case_wave2_bx, case_wave2_bk, case_wave2_mn, case_wave2_qn, case_wave2_si,  nrow = 2, ncol = 3)
 ```
 
 
