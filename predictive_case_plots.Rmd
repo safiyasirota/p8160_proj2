@@ -1,0 +1,79 @@
+---
+title: "Predictive Plots for Cumulative Cases"
+author: "Safiya Sirota"
+date: "2023-03-30"
+output: 
+  html_document:
+    toc: TRUE
+---
+
+```{r setup,  include=FALSE}
+library(tidyverse)
+source("wave2case.R")
+```
+
+# Individual plots
+
+## NYC
+
+```{r}
+pop_nyc <- pop_bx + pop_bk + pop_mn + pop_qn + pop_si
+
+case_wave2_nyc_ext <- df_wave2_nyc_ext %>%
+  mutate(
+    Y_i_hat_final = N(t_i, final_nyc)
+  ) %>%
+  ggplot(aes(x = t_i)) + 
+  geom_point(aes(y = (Y_i/pop_nyc)*100000), size = 1) +
+  geom_line(aes(y = (Y_i_hat_final/pop_nyc)*100000), color = "red") +
+  labs(title = "New York City", x = "Days (since Sep 15, 2020)", 
+       y = "Cumulative cases per 100,000 capita") +
+  theme(legend.position = "none") +
+  coord_cartesian(xlim = c(0, 300))
+
+case_wave2_nyc_ext
+```
+
+## Bronx
+
+```{r}
+case_wave2_bx_ext
+```
+
+## Brooklyn
+
+```{r}
+case_wave2_bk_ext
+```
+
+## Manhattan
+
+```{r}
+case_wave2_mn_ext
+```
+
+## Queens
+
+```{r}
+case_wave2_qn_ext
+```
+
+## Staten Island
+
+```{r}
+case_wave2_si_ext
+```
+
+# Grouped plots
+
+## All boroughs
+
+```{r}
+ggarrange(case_wave2_bx_ext, 
+          case_wave2_bk_ext + ylab(""), 
+          case_wave2_mn_ext + ylab(""), 
+          case_wave2_qn_ext, 
+          case_wave2_si_ext + ylab(""),  
+          nrow = 2, ncol = 3) 
+```
+
