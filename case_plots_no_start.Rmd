@@ -1,0 +1,168 @@
+---
+title: "Cumulative Case Plots w/ No Start Curves"
+author: "Safiya Sirota"
+date: "2023-03-30"
+output: 
+  html_document:
+    toc: TRUE
+---
+
+```{r setup, include=FALSE}
+source("tinghsuan_wave1case.R")
+source("wave2case.R")
+```
+
+# Individual Case Plots
+
+## Wave 1
+
+### NYC
+
+```{r}
+case_wave1_nyc <- df_wave %>%
+  mutate(
+    Y_i_hat_final = N(t_i, final)
+  ) %>%
+  ggplot(aes(x = t_i)) + 
+  geom_point(aes(y = Y_i), size = 1) +
+  geom_line(aes(y = Y_i_hat_final, color = "red")) +
+  labs(title = "New York City", x ="Days (since Feb 29, 2020)", y = "Cumulative cases") +
+  theme(legend.position = "none")
+```
+
+### Bronx
+
+```{r}
+case_wave1_bx
+```
+
+### Brooklyn
+
+```{r}
+case_wave1_bk
+```
+
+### Manhattan
+
+```{r}
+case_wave1_mn
+```
+
+### Queens
+
+```{r}
+case_wave1_qn
+```
+
+### Staten Island
+
+```{r}
+case_wave1_si
+```
+
+## Wave 2
+
+### NYC
+
+```{r}
+case_wave2_nyc
+```
+
+### Bronx
+
+```{r}
+case_wave2_bx
+```
+
+### Brooklyn
+
+```{r}
+case_wave2_bk
+```
+
+### Manhattan
+
+```{r}
+case_wave2_mn
+```
+
+### Queens
+
+```{r}
+case_wave2_qn
+```
+
+### Staten Island
+
+```{r}
+case_wave2_si
+```
+
+# Grouped Case Plots 
+
+## Wave 1 and Wave 2 Plots by Borough
+
+### NYC
+
+```{r}
+ggarrange(case_wave1_nyc, case_wave2_nyc + ylab("") + ggtitle(""), 
+          nrow = 1, ncol = 2, 
+          common.legend = TRUE, legend = "bottom")
+```
+
+### Bronx
+
+```{r}
+ggarrange(case_wave1_bx, case_wave2_bx + ylab("") + ggtitle(""), 
+          nrow = 1, ncol = 2, 
+          common.legend = TRUE, legend = "bottom")
+```
+
+### Brooklyn
+
+```{r}
+ggarrange(case_wave1_bk, case_wave2_bk + ylab("") + ggtitle(""), 
+          nrow = 1, ncol = 2, 
+          common.legend = TRUE, legend = "bottom")
+```
+
+### Manhattan
+
+```{r}
+ggarrange(case_wave1_mn, case_wave2_mn + ylab("") + ggtitle(""), 
+          nrow = 1, ncol = 2, 
+          common.legend = TRUE, legend = "bottom")
+```
+
+### Queens
+
+```{r}
+ggarrange(case_wave1_qn, case_wave2_qn + ylab("") + ggtitle(""), 
+          nrow = 1, ncol = 2, 
+          common.legend = TRUE, legend = "bottom")
+```
+
+### Staten Island
+
+```{r}
+ggarrange(case_wave1_si, case_wave2_si + ylab("") + ggtitle(""), 
+          nrow = 1, ncol = 2, 
+          common.legend = TRUE, legend = "bottom")
+```
+
+
+## All Wave 1 Plots
+
+```{r}
+ggarrange(case_wave1_nyc, case_wave1_bx, case_wave1_bk, case_wave1_mn, case_wave1_qn, case_wave1_si,  nrow = 2, ncol = 3, common.legend = TRUE, legend = "bottom") 
+```
+
+## All Wave 2 Plots
+
+```{r}
+ggarrange(case_wave2_nyc, case_wave2_bx, case_wave2_bk, case_wave2_mn, case_wave2_qn, case_wave2_si,  nrow = 2, ncol = 3, common.legend = TRUE, legend = "bottom") 
+```
+
+
+
+
