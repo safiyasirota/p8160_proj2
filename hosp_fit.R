@@ -117,10 +117,11 @@ final_hosp_wave1_si <- res_hosp_wave1_si[nrow(res_hosp_wave1_si), 4:7]
 ## Bronx
 hosp_wave1_bx <- df_hosp_wave1_bx %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_hosp_wave1_bx),
+    #Y_i_hat_start = N(t_i, start_hosp_wave1_bx),
     Y_i_hat_final = N(t_i, final_hosp_wave1_bx)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  #pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  pivot_longer(Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
   geom_line(aes(y = value, color = type)) +
@@ -130,10 +131,11 @@ hosp_wave1_bx <- df_hosp_wave1_bx %>%
 ## Brooklyn
 hosp_wave1_bk <- df_hosp_wave1_bk %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_hosp_wave1_bk),
+   # Y_i_hat_start = N(t_i, start_hosp_wave1_bk),
     Y_i_hat_final = N(t_i, final_hosp_wave1_bk)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  #pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  pivot_longer(Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
   geom_line(aes(y = value, color = type)) +
@@ -143,10 +145,11 @@ hosp_wave1_bk <- df_hosp_wave1_bk %>%
 ## Manhattan
 hosp_wave1_mn <- df_hosp_wave1_mn %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_hosp_wave1_mn),
+   # Y_i_hat_start = N(t_i, start_hosp_wave1_mn),
     Y_i_hat_final = N(t_i, final_hosp_wave1_mn)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  #pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  pivot_longer(Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
   geom_line(aes(y = value, color = type)) +
@@ -156,10 +159,11 @@ hosp_wave1_mn <- df_hosp_wave1_mn %>%
 ## Queens
 hosp_wave1_qn <- df_hosp_wave1_qn %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_hosp_wave1_qn),
+   # Y_i_hat_start = N(t_i, start_hosp_wave1_qn),
     Y_i_hat_final = N(t_i, final_hosp_wave1_qn)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  #pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  pivot_longer(Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
   geom_line(aes(y = value, color = type)) +
@@ -169,10 +173,11 @@ hosp_wave1_qn <- df_hosp_wave1_qn %>%
 ## Staten Island
 hosp_wave1_si <- df_hosp_wave1_si %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_hosp_wave1_si),
+   # Y_i_hat_start = N(t_i, start_hosp_wave1_si),
     Y_i_hat_final = N(t_i, final_hosp_wave1_si)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  #pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  pivot_longer(Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
   geom_line(aes(y = value, color = type)) +
@@ -182,10 +187,11 @@ hosp_wave1_si <- df_hosp_wave1_si %>%
 ## NYC
 hosp_wave1_nyc <- df_hosp_wave1_nyc %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_hosp_wave1_nyc),
+    #Y_i_hat_start = N(t_i, start_hosp_wave1_nyc),
     Y_i_hat_final = N(t_i, final_hosp_wave1_nyc)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  #pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  pivot_longer(Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
   geom_line(aes(y = value, color = type)) +
@@ -310,10 +316,11 @@ final_hosp_wave2_si <- res_hosp_wave2_si[nrow(res_hosp_wave2_si), 4:7]
 ## Bronx
 hosp_wave2_bx <- df_hosp_wave2_bx %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_hosp_wave2_bx),
+   # Y_i_hat_start = N(t_i, start_hosp_wave2_bx),
     Y_i_hat_final = N(t_i, final_hosp_wave2_bx)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  #pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  pivot_longer(Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
   geom_line(aes(y = value, color = type)) +
@@ -323,10 +330,11 @@ hosp_wave2_bx <- df_hosp_wave2_bx %>%
 ## Brooklyn
 hosp_wave2_bk <- df_hosp_wave2_bk %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_hosp_wave2_bk),
+   # Y_i_hat_start = N(t_i, start_hosp_wave2_bk),
     Y_i_hat_final = N(t_i, final_hosp_wave2_bk)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  #pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  pivot_longer(Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
   geom_line(aes(y = value, color = type)) +
@@ -336,10 +344,11 @@ hosp_wave2_bk <- df_hosp_wave2_bk %>%
 ## Manhattan
 hosp_wave2_mn <- df_hosp_wave2_mn %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_hosp_wave2_mn),
+   # Y_i_hat_start = N(t_i, start_hosp_wave2_mn),
     Y_i_hat_final = N(t_i, final_hosp_wave2_mn)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  #pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  pivot_longer(Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
   geom_line(aes(y = value, color = type)) +
@@ -349,10 +358,11 @@ hosp_wave2_mn <- df_hosp_wave2_mn %>%
 ## Queens
 hosp_wave2_qn <- df_hosp_wave2_qn %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_hosp_wave2_qn),
+  #  Y_i_hat_start = N(t_i, start_hosp_wave2_qn),
     Y_i_hat_final = N(t_i, final_hosp_wave2_qn)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  #pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  pivot_longer(Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
   geom_line(aes(y = value, color = type)) +
@@ -362,10 +372,11 @@ hosp_wave2_qn <- df_hosp_wave2_qn %>%
 ## Staten Island
 hosp_wave2_si <- df_hosp_wave2_si %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_hosp_wave2_si),
+   # Y_i_hat_start = N(t_i, start_hosp_wave2_si),
     Y_i_hat_final = N(t_i, final_hosp_wave2_si)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  #pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  pivot_longer(Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
   geom_line(aes(y = value, color = type)) +
@@ -375,10 +386,11 @@ hosp_wave2_si <- df_hosp_wave2_si %>%
 ## NYC
 hosp_wave2_nyc <- df_hosp_wave2_nyc %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_hosp_wave2_nyc),
+  #  Y_i_hat_start = N(t_i, start_hosp_wave2_nyc),
     Y_i_hat_final = N(t_i, final_hosp_wave2_nyc)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  #pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+  pivot_longer(Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
   geom_line(aes(y = value, color = type)) +
@@ -387,3 +399,169 @@ hosp_wave2_nyc <- df_hosp_wave2_nyc %>%
 
 
 ggarrange(hosp_wave2_nyc, hosp_wave2_bx, hosp_wave2_bk, hosp_wave2_mn, hosp_wave2_qn, hosp_wave2_si,  nrow = 2, ncol = 3, common.legend = TRUE, legend = "bottom") 
+
+#############################PREDICTIONS!#####################################
+
+# Constructing a vector of future dates
+more_days <- seq(from = as.Date("2020-12-12"), to = as.Date("2021-06-12"), 
+                 by = 'day')
+more_days <- ymd(more_days)
+currow <- nrow(df_hosp_wave2_nyc)
+more_times <- seq(from = currow + 1, 
+                  to = length(more_days) + currow)
+Ys <- rep(NA, length(more_days))
+more_hosp_data <- tibble(date = more_days, t_i = more_times, Y_i = Ys)
+
+# Adding data to current data set
+df_hosp_wave2_nyc_next <- rbind(df_hosp_wave2_nyc %>% select(-case_count), more_hosp_data)
+
+hosp_wave2_nyc_next <- df_hosp_wave2_nyc_next %>%
+  mutate(
+    Y_i_hat_final = N(t_i, final_hosp_wave2_nyc)
+  ) %>%
+  ggplot(aes(x = t_i)) + 
+  geom_point(aes(y = Y_i), size = 1) +
+  geom_line(aes(y = Y_i_hat_final, color = "red")) +
+  labs(title = "New York City", x ="Days (since Sep 15, 2020)", y = "Cumulative hospitalizations") +
+  theme(legend.position = "none") +
+  coord_cartesian(xlim = c(0, 300))
+
+###BX
+currow <- nrow(df_hosp_wave2_bx)
+more_times <- seq(from = currow + 1, 
+                  to = length(more_days) + currow)
+Ys <- rep(NA, length(more_days))
+more_hosp_bx_data <- tibble(date = more_days, t_i = more_times, Y_i = Ys)
+
+# Adding data to current data set
+df_hosp_wave2_bx_next <- rbind(df_hosp_wave2_bx, more_hosp_bx_data)
+
+# Saving population value
+pop_bx <- 1472654
+
+# Making new plot
+hosp_wave2_bx_next <- df_hosp_wave2_bx_next %>%
+  mutate(
+    Y_i_hat_final = N(t_i, final_hosp_wave2_bx)
+  ) %>%
+  ggplot(aes(x = t_i)) + 
+  geom_point(aes(y = (Y_i/pop_bx)*100000), size = 1) +
+  geom_line(aes(y = (Y_i_hat_final/pop_bx)*100000), color = "red") +
+  labs(title = "Bronx", x ="Days (since Sep 15, 2020)", 
+       y = "Cumulative hospitalizations per 100,000 capita") +
+  theme(legend.position = "none") +
+  coord_cartesian(xlim = c(0, 300), ylim = c(0, 400))
+
+#####bk
+currow <- nrow(df_hosp_wave2_bk)
+more_times <- seq(from = currow + 1, 
+                  to = length(more_days) + currow)
+Ys <- rep(NA, length(more_days))
+more_hosp_bk_data <- tibble(date = more_days, t_i = more_times, Y_i = Ys)
+
+# Adding data to current data set
+df_hosp_wave2_bk_next <- rbind(df_hosp_wave2_bk, more_hosp_bk_data)
+
+# Saving population value
+pop_bk <- 2736074
+
+# Making new plot
+hosp_wave2_bk_next <- df_hosp_wave2_bk_next %>%
+  mutate(
+    Y_i_hat_final = N(t_i, final_hosp_wave2_bk)
+  ) %>%
+  ggplot(aes(x = t_i)) + 
+  geom_point(aes(y = (Y_i/pop_bk)*100000), size = 1) +
+  geom_line(aes(y = (Y_i_hat_final/pop_bk)*100000), color = "red") +
+  labs(title = "Brooklyn", x ="Days (since Sep 15, 2020)", 
+       y = "Cumulative hospitalizations per 100,000 capita") +
+  theme(legend.position = "none") +
+  coord_cartesian(xlim = c(0, 300), ylim = c(0, 400))
+
+
+####mn
+currow <- nrow(df_hosp_wave2_mn)
+more_times <- seq(from = currow + 1, 
+                  to = length(more_days) + currow)
+Ys <- rep(NA, length(more_days))
+more_hosp_mn_data <- tibble(date = more_days, t_i = more_times, Y_i = Ys)
+
+# Adding data to current data set
+df_hosp_wave2_mn_next <- rbind(df_hosp_wave2_mn, more_hosp_mn_data)
+
+# Saving population value
+pop_mn <- 1694251
+
+# Making new plot
+hosp_wave2_mn_next <- df_hosp_wave2_mn_next %>%
+  mutate(
+    Y_i_hat_final = N(t_i, final_hosp_wave2_mn)
+  ) %>%
+  ggplot(aes(x = t_i)) + 
+  geom_point(aes(y = (Y_i/pop_mn)*100000), size = 1) +
+  geom_line(aes(y = (Y_i_hat_final/pop_mn)*100000), color = "red") +
+  labs(title = "Manhattan", x ="Days (since Sep 15, 2020)", 
+       y = "Cumulative hospitalizations per 100,000 capita") +
+  theme(legend.position = "none") +
+  coord_cartesian(xlim = c(0, 300), ylim = c(0, 400))
+
+
+#####qn
+currow <- nrow(df_hosp_wave2_qn)
+more_times <- seq(from = currow + 1, 
+                  to = length(more_days) + currow)
+Ys <- rep(NA, length(more_days))
+more_hosp_qn_data <- tibble(date = more_days, t_i = more_times, Y_i = Ys)
+
+# Adding data to current data set
+df_hosp_wave2_qn_next <- rbind(df_hosp_wave2_qn, more_hosp_qn_data)
+
+# Saving population value
+pop_qn <- 2405464
+
+# Making new plot
+hosp_wave2_qn_next <- df_hosp_wave2_qn_next %>%
+  mutate(
+    Y_i_hat_final = N(t_i, final_hosp_wave2_qn)
+  ) %>%
+  ggplot(aes(x = t_i)) + 
+  geom_point(aes(y = (Y_i/pop_qn)*100000), size = 1) +
+  geom_line(aes(y = (Y_i_hat_final/pop_qn)*100000), color = "red") +
+  labs(title = "Queens", x ="Days (since Sep 15, 2020)", 
+       y = "Cumulative hospitalizations per 100,000 capita") +
+  theme(legend.position = "none") +
+  coord_cartesian(xlim = c(0, 300), ylim = c(0, 400))
+
+
+######
+currow <- nrow(df_hosp_wave2_si)
+more_times <- seq(from = currow + 1, 
+                  to = length(more_days) + currow)
+Ys <- rep(NA, length(more_days))
+more_hosp_si_data <- tibble(date = more_days, t_i = more_times, Y_i = Ys)
+
+# Adding data to current data set
+df_hosp_wave2_si_next <- rbind(df_hosp_wave2_si, more_hosp_si_data)
+
+# Saving population value
+pop_si <- 495747
+
+# Making new plot
+hosp_wave2_si_next <- df_hosp_wave2_si_next %>%
+  mutate(
+    Y_i_hat_final = N(t_i, final_hosp_wave2_si)
+  ) %>%
+  ggplot(aes(x = t_i)) + 
+  geom_point(aes(y = (Y_i/pop_si)*100000), size = 1) +
+  geom_line(aes(y = (Y_i_hat_final/pop_si)*100000), color = "red") +
+  labs(title = "Staten Island", x ="Days (since Sep 15, 2020)", 
+       y = "Cumulative hospitalizations per 100,000 capita") +
+  theme(legend.position = "none") +
+  coord_cartesian(xlim = c(0, 300), ylim = c(0, 400))
+
+
+ggarrange(hosp_wave2_bx_next, 
+          hosp_wave2_bk_next, hosp_wave2_mn_next, 
+          hosp_wave2_qn_next, hosp_wave2_si_next,  
+          nrow = 2, ncol = 3, common.legend = TRUE, legend = "bottom") 
+
