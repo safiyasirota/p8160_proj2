@@ -132,83 +132,70 @@ final_si <- res_si[nrow(res_si), 4:7]
 # Bronx
 death_wave1_bx <- df_wave1_bx %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_bx),
-    Y_i_hat_final = N(t_i, final_bx)
+ Y_i_hat_final = N(t_i, final_bx)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
-  geom_line(aes(y = value, color = type)) +
-  labs(title = "Bronx", x ="Days (since Feb 29, 2020)", y = "Cumulative deaths") +   
-  scale_color_discrete(name = "Fitted model", labels = c("Final", "Start")) 
+  geom_line(aes(y = Y_i_hat_final, color = "red")) +
+  labs(title = "Bronx", x ="Days (since Feb 29, 2020)", y = "Cumulative deaths") +
+  theme(legend.position = "none") 
 
 # Brooklyn
 death_wave1_bk <- df_wave1_bk %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_bk),
-    Y_i_hat_final = N(t_i, final_bk)
+ Y_i_hat_final = N(t_i, final_bk)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
-  geom_line(aes(y = value, color = type)) +
-  labs(title = "Brooklyn", x ="Days (since Feb 29, 2020)", y = "Cumulative deaths") +   
-  scale_color_discrete(name = "Fitted model", labels = c("Final", "Start")) 
+  geom_line(aes(y = Y_i_hat_final, color = "red")) +
+  labs(title = "Brooklyn", x ="Days (since Feb 29, 2020)", y = "Cumulative deaths") +
+  theme(legend.position = "none") 
 
 ## Manhattan
 death_wave1_mn <- df_wave1_mn %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_mn),
-    Y_i_hat_final = N(t_i, final_mn)
+ Y_i_hat_final = N(t_i, final_mn)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
-  geom_line(aes(y = value, color = type)) +
-  labs(title = "Manhattan", x ="Days (since Feb 29, 2020)", y = "Cumulative deaths") +   
-  scale_color_discrete(name = "Fitted model", labels = c("Final", "Start")) 
+  geom_line(aes(y = Y_i_hat_final, color = "red")) +
+  labs(title = "Manhattan", x ="Days (since Feb 29, 2020)", y = "Cumulative deaths") +
+  theme(legend.position = "none")  
 
 ## Queens
 death_wave1_qn <- df_wave1_qn %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_qn),
-    Y_i_hat_final = N(t_i, final_qn)
+ Y_i_hat_final = N(t_i, final_qn)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
-  geom_line(aes(y = value, color = type)) +
-  labs(title = "Queens", x ="Days (since Feb 29, 2020)", y = "Cumulative deaths") +   
-  scale_color_discrete(name = "Fitted model", labels = c("Final", "Start")) 
+  geom_line(aes(y = Y_i_hat_final, color = "red")) +
+  labs(title = "Queens", x ="Days (since Feb 29, 2020)", y = "Cumulative deaths") +
+  theme(legend.position = "none")  
 
 ## Staten Island
 death_wave1_si <- df_wave1_si %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_si),
-    Y_i_hat_final = N(t_i, final_si)
+ Y_i_hat_final = N(t_i, final_si)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
-  geom_line(aes(y = value, color = type)) +
-  labs(title = "Staten Island", x ="Days (since Feb 29, 2020)", y = "Cumulative deaths") +   
-  scale_color_discrete(name = "Fitted model", labels = c("Final", "Start")) 
+  geom_line(aes(y = Y_i_hat_final, color = "red")) +
+  labs(title = "Staten Island", x ="Days (since Feb 29, 2020)", y = "Cumulative deaths") +
+  theme(legend.position = "none") 
 
 ## NYC
 death_wave1_nyc <- df_wave1_nyc %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_nyc),
-    Y_i_hat_final = N(t_i, final_nyc)
+ Y_i_hat_final = N(t_i, final_nyc)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
-  geom_line(aes(y = value, color = type)) +
-  labs(title = "New York City", x ="Days (since Feb 29, 2020)", 
-       y = "Cumulative deaths") +   
-  scale_color_discrete(name = "Fitted model", labels = c("Final", "Start")) 
+  geom_line(aes(y = Y_i_hat_final, color = "red")) +
+  labs(title = "New York City", x ="Days (since Feb 29, 2020)", y = "Cumulative deaths") +
+  theme(legend.position = "none")  
 
-ggarrange(death_wave1_nyc, death_wave1_bx, death_wave1_bk, death_wave1_mn, death_wave1_qn, death_wave1_si,  nrow = 2, ncol = 3, common.legend = TRUE, legend = "bottom") 
+ggarrange(death_wave1_nyc, death_wave1_bx, death_wave1_bk, death_wave1_mn, death_wave1_qn, death_wave1_si,  nrow = 2, ncol = 3)
 ```
 
 # Wave 2
@@ -336,83 +323,70 @@ final_si2 <- res_si2[nrow(res_si2), 4:7]
 # Bronx
 death_wave2_bx <- df_wave2_bx %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_bx2),
-    Y_i_hat_final = N(t_i, final_bx2)
+ Y_i_hat_final = N(t_i, final_bx2)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
-  geom_line(aes(y = value, color = type)) +
-  labs(title = "Bronx", x ="Days (since Sep 15, 2020)", y = "Cumulative deaths") +   
-  scale_color_discrete(name = "Fitted model", labels = c("Final", "Start")) 
+  geom_line(aes(y = Y_i_hat_final, color = "red")) +
+  labs(title = "Bronx", x ="Days (since Sep 15, 2020)", y = "Cumulative deaths") +
+  theme(legend.position = "none")
 
 # Brooklyn
 death_wave2_bk <- df_wave2_bk %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_bk2),
-    Y_i_hat_final = N(t_i, final_bk2)
+ Y_i_hat_final = N(t_i, final_bk2)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
-  geom_line(aes(y = value, color = type)) +
-  labs(title = "Brooklyn", x ="Days (since Sep 15, 2020)", y = "Cumulative deaths") +   
-  scale_color_discrete(name = "Fitted model", labels = c("Final", "Start")) 
+  geom_line(aes(y = Y_i_hat_final, color = "red")) +
+  labs(title = "Brooklyn", x ="Days (since Sep 15, 2020)", y = "Cumulative deaths") +
+  theme(legend.position = "none")
 
 ## Manhattan
 death_wave2_mn <- df_wave2_mn %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_mn2),
     Y_i_hat_final = N(t_i, final_mn2)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
-  geom_line(aes(y = value, color = type)) +
-  labs(title = "Manhattan", x ="Days (since Sep 15, 2020)", y = "Cumulative deaths") +   
-  scale_color_discrete(name = "Fitted model", labels = c("Final", "Start")) 
+  geom_line(aes(y = Y_i_hat_final, color = "red")) +
+  labs(title = "Manhattan", x ="Days (since Sep 15, 2020)", y = "Cumulative deaths") +
+  theme(legend.position = "none") 
 
 ## Queens
 death_wave2_qn <- df_wave2_qn %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_qn2),
-    Y_i_hat_final = N(t_i, final_qn2)
+ Y_i_hat_final = N(t_i, final_qn2)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
-  geom_line(aes(y = value, color = type)) +
-  labs(title = "Queens", x ="Days (since Sep 15, 2020)", y = "Cumulative deaths") +   
-  scale_color_discrete(name = "Fitted model", labels = c("Final", "Start")) 
+  geom_line(aes(y = Y_i_hat_final, color = "red")) +
+  labs(title = "Queens", x ="Days (since Sep 15, 2020)", y = "Cumulative deaths") +
+  theme(legend.position = "none")
 
 ## Staten Island
 death_wave2_si <- df_wave2_si %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_si2),
-    Y_i_hat_final = N(t_i, final_si2)
-  ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
+ Y_i_hat_final = N(t_i, final_si2)
+  ) %>% 
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
-  geom_line(aes(y = value, color = type)) +
-  labs(title = "Staten Island", x ="Days (since Sep 15, 2020)", y = "Cumulative deaths") +   
-  scale_color_discrete(name = "Fitted model", labels = c("Final", "Start")) 
+  geom_line(aes(y = Y_i_hat_final, color = "red")) +
+  labs(title = "Staten Island", x ="Days (since Sep 15, 2020)", y = "Cumulative deaths") +
+  theme(legend.position = "none")
 
 ## NYC
 death_wave2_nyc <- df_wave2_nyc %>%
   mutate(
-    Y_i_hat_start = N(t_i, start_nyc2),
-    Y_i_hat_final = N(t_i, final_nyc2)
+ Y_i_hat_final = N(t_i, final_nyc2)
   ) %>%
-  pivot_longer(Y_i_hat_start:Y_i_hat_final, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = t_i)) + 
   geom_point(aes(y = Y_i), size = 1) +
-  geom_line(aes(y = value, color = type)) +
-  labs(title = "New York City", x ="Days (since Sep 15, 2020)", 
-       y = "Cumulative deaths") +   
-  scale_color_discrete(name = "Fitted model", labels = c("Final", "Start")) 
+  geom_line(aes(y = Y_i_hat_final, color = "red")) +
+  labs(title = "New York City", x ="Days (since Sep 15, 2020)", y = "Cumulative deaths") +
+  theme(legend.position = "none") 
 
-ggarrange(death_wave2_nyc, death_wave2_bx, death_wave2_bk, death_wave2_mn, death_wave2_qn, death_wave2_si,  nrow = 2, ncol = 3, common.legend = TRUE, legend = "bottom") 
+ggarrange(death_wave2_nyc, death_wave2_bx, death_wave2_bk, death_wave2_mn, death_wave2_qn, death_wave2_si,  nrow = 2, ncol = 3) 
 ```
 
 # Task 1.3
@@ -617,5 +591,7 @@ ggarrange(death_wave2_bx_ext,
           death_wave2_bk_ext, death_wave2_mn_ext, 
           death_wave2_qn_ext, death_wave2_si_ext,  
           nrow = 2, ncol = 3, common.legend = TRUE, legend = "bottom") 
+
+death_wave2_nyc_ext
 ```
 
