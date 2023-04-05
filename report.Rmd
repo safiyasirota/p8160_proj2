@@ -13,7 +13,7 @@ library(knitr)
 library(ggpubr)
 
 # read in data
-df <- read_csv("~/Desktop/P8160_topics_in_advanced_statistical_computing/projects/project02/p8160_proj2/data-by-day year 1.csv")
+df <- read_csv("data-by-day year 1.csv")
 
 # clean data frame
 df <- df %>%
@@ -28,11 +28,39 @@ df <- df %>%
 
 
 # Introduction
+Publicly available data for COVID-19 collected by governments, healthcare facilities, and academic institutions has facilitated research on the evolution of the pandemic. In this study, we analyzed COVID-19 trends in each of the five boroughs of New York City (Bronx, Brooklyn, Manhattan, Queens, and Staten Island) using data collected by the New York Department of Health (NYDOH). The NYDOH dataset includes citywide and borough-specific daily counts of COVID-19 cases, hospitalizations, and deaths since February 29, 2020 (the day of the first laboratory-confirmed case in New York City). A subset of this data up to December 11, 2020 was included in our analyses. 
 
-Let $t_i$ be the number of days since the beginning of a pandemic wave. Let $(y_i, t_i)_{i = 1, \ldots, n}$ be a sequence of observed daily cases/hospitalizations/deaths at time $t_i$. Let $Y_i = \sum_{k=1}^i y_k$ be the cumulative number of cases/hospitalizations/deaths by time $t_i$. Assume that $(Y_i, t_i)$ follows the following non-linear model:
+Figure 1 shows the citywide daily counts of COVID-19 cases, hospitalizations, and deaths from February 29 to December 11, 2020. We defined two pandemic waves in this time frame based on observations of daily cases: the first wave starts from February 29, 2020 and ends on September 14, 2020, in which a spike in cases was seen around April and dropped significantly until mid-September; the second wave starts on September 15 and is characterized by a resurgence of cases as winter approached.   
+
+The Richard's growth function is a S-shaped function that is commonly used to model the growth of a population. Let $N(t)$ be a population at time $t$, the function takes the form:  
+
+$$N(t) = \frac{a}{\{1 + d \exp\{-k(t-t_0)\}\}^{1/d}}$$
+where $(a, k, d, t_0)$ are shape parameters. The parameter $a$ is the upper bound of the function; $k$ is the growth rate, which controls the slope at an inflection (where the curve changes from convex to concave); $t_0$ is the time at an inflection; and $d$ is another shape parameter that has no clear substantive meaning.
+
+Let $t_i$ be the number of days since the beginning of a pandemic wave. Let $(y_i, t_i)_{i = 1, \ldots, n}$ be a sequence of observed daily cases/hospitalizations/deaths at time $t_i$. Let $Y_i = \sum_{k=1}^i y_k$ be the cumulative number of cases/hospitalizations/deaths by time $t_i$. We assumed that $(Y_i, t_i)$ follows the following non-linear model:
 
 $$Y_i = N(t_i, \boldsymbol{\theta}) + \epsilon_i$$
 where $N(t_i, \boldsymbol{\theta})$ is the Richard's growth function with parameters $\boldsymbol{\theta} = (a, k, d, t_0)^T$ and $\epsilon_i$ is the random error with mean zero, i.e. $E[\epsilon_i] = 0$. 
+
+Our analysis was composed of three tasks. Task 1 developed a Newton-Raphson algorithm to fit a Richard's curve to each borough's cumulative cases. Task 2 then applied the same algorithm to each borough's cumulative hospitalizations and deaths. The fitted curves were compared across the five boroughs as well as the two pandemic waves. Lastly, Task 3 aimed to predict the trends (in cases, hospitalizations, and deaths) after December 11, 2020 for each borough in order to provide suggestions regarding the distribution of vaccination, which was authorized by the FDA on December 11.
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+fig_nyc_daily <- df %>%
+  select(date:death_count) %>%
+  # mutate(across(case_count:death_count, cumsum)) %>%
+  pivot_longer(case_count:death_count, names_to = "type", values_to = "val") %>%
+  ggplot(aes(x = date, y = val, color = type)) +
+  geom_line() +
+  scale_x_date(date_breaks = "1 month", date_labels = "%b") +
+  scale_colour_discrete(name = "", labels = c("Case", "Death", "Hospitalization")) +
+  labs(x = "Date", y = "Daily count") +
+  geom_vline(xintercept = as.Date("2020-09-15"), alpha = 0.4, linewidth = 1) +
+  theme_bw()
+```
+
+```{r, echo = FALSE, fig.cap = "Daily counts of COVID-19 cases, hospitalizations, and deaths in New York City"}
+fig_nyc_daily
+```
 
 # Task 1
 
