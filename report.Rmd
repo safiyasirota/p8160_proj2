@@ -293,6 +293,41 @@ fig_nyc_start_final
 
 # Task 2
 
+## Cumulative Cases
+
+We first present the results for cumulative cases in all boroughs to investigate the algorithm performance. The two COVID-19 waves are defined as follows: waves 1: February 29, 2020 to September 14, 2020; wave 2: September 14, 2020 to December 11, 2020. 
+
+As discussed in the previous section, the starting values are chosen based on the following guidelines:  
+
+* $a = \text{max}(Y_i)$;
+* $t_o \approx \text{argmax}(Y_i)$;
+* $k$ is the standardized slope for cumulative cases 4 days before and after inflection date. 
+* $d$ is 0.5
+
+
+In the first figure, we present the fitted curves (red) and compare the true cumulative cases (black). From a direct observation, we conclude that the algorithm performed well in approximating the real data. 
+
+![Fitted curves of cumulative cases for first wave](plots/case_plots/no_start_curve/wave1_all.png){width=400px}
+
+We further present the estimates parameters for the first wave cumulative cases. Since we have access to the first wave data, the estimated parameters can serve as a validation for the algorithm performance. By a direction observation of estimated $a,t_0$ parameters, we conclude our algorithm performed well since the estimated parameters approached the truth well. 
+
+![Estimated parameters of cumulative cases for first wave](plots/case_plots/no_start_curve/wave_1_para.png){width=400px}
+
+We then present the fitted curves and estimated parameters for the second wave cumulative cases. Since we only obtained partial data for second wave, several assumptions about starting values are made for the estimation. 
+
+* We first assume the inflection point $t_0$ is at around the end of the observed data
+* $a = 2*y_{t0}$ with the assumption that the maximum number of cumulative cases will be two times the case number at the inflection point 
+* $k$ is the standardized slope for cumulative cases 4 days before and after inflection date. 
+* $d$ is 0.5
+
+From the blow figure and estimated parameters, we notice a good recovery of the true cases cruves with our estimated curves in all boroughs.
+
+![Fitted curves of cumulative cases for second wave](plots/case_plots/no_start_curve/wave2_all.png){width=400px}
+
+![Estimated parameters of cumulative cases for second wave](plots/case_plots/predictive/case_final_parameters.png){width=400px}
+ 
+
+
 ## Cumulative Hospitalizations
 We fitted the Richard's growth curve to cumulative hospitalizations in all boroughs in NYC. Simmilar to cumulative cases, we split hospitalizations into two waves: 1) February 29, 2020 to September 14, 2020; 2) September 14, 2020 to December 11, 2020. 
 
@@ -332,6 +367,21 @@ The fitted curves stil look very close to the observation. We tend to underestim
 # Task 3
 
 ## Cumulative Cases
+From previous task, we successfully estimated and obtained parameters that approximated the first half of the second wave data well. A natural extrapolation would be extending the curves so that we may predict the cumulative cases based on th observed the data. Hence, we utilize the estimated final parameters and use that for cumulative cases prediction. 
+
+We incorporate borough population to infer cases per 100,000 capita so that based on the y axis we are able to make a direct comparison of the severity of the second wave. Based on the interpretation of the estimated parameters, we obtained the following observations:
+
+* $a$ can be interpreted as maximum number of cumulative cases in each borough. Staten Island is predicted to have the largest cases per 100,000 capita and Manhattan is predicted to have the smallest
+* $k$ can be interpreted as standardized slope at the inflection point. It Provides intuition of the rate of cases increase at inflection point. Staten Island has biggest $k$ while Brooklyn has smallest $k$. 
+
+Therefore, based on the previous prediction and observation, we would suggestion that distributing vaccination to the boroughs with higher predicted cumulative cases per capita and large rate of cases increase. In this case, Staten Island should be prioritized for vaccination rollout. 
+
+
+![Predicted cases for each borough](plots/case_plots/predictive/all_pred.png){width=400px} 
+
+![Estimated parameters of cumulative cases for second wave](plots/case_plots/predictive/case_final_parameters.png){width=400px}
+
+
 
 ## Cumulative Hospitalizations
 
