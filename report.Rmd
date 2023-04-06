@@ -2,7 +2,9 @@
 title: "Analysis of Daily COVID-19 Cases, Hospitalizations, and Deaths in NYC"
 author: "Anja S, Bin Y, Safiya S, Ting-Hsuan C, Yijin W"
 date: "`r Sys.Date()`"
-output: pdf_document
+output: 
+  pdf_document:
+    keep_tex: yes
 ---
 
 ```{r, include = FALSE, warning = FALSE, message = FALSE}
@@ -290,6 +292,42 @@ fig_nyc_start_final
 
 
 # Task 2
+
+## Cumulative Hospitalizations
+We fitted the Richard's growth curve to cumulative hospitalizations in all boroughs in NYC. Simmilar to cumulative cases, we split hospitalizations into two waves: 1) February 29, 2020 to September 14, 2020; 2) September 14, 2020 to December 11, 2020. 
+
+When fitting the first wave of hospitalizations, we used similar assumptions to pick starting values:
+
+* $a$ is $\mbox{max}(Hospitalizations)$ for all boroughs and NYC, assuming there is not much increase in hospitalization resources. 
+* Different inflection date $t_0$ for different locations, as we observed slopes at different dates seem to fit the overall wave better. There are minor differences among inflection dates. Brooklyn and Manhattan have March 31 as starting value for inflection date; Staten Island has April 1; Queens, Bronx, and NYC have April 3, 2020.
+* $k$ is the standardized slope for cumulative hospitalization data on 4 days before and after inflection date. 
+* $d$ is 0.5
+
+Figure ? are plots for fitted curve for the first hospitalization wave. Figure ? are the parameters used to fit the first wave. 
+
+![The first hospitalization wave - fitted curves](plots/hosp_plots/no_start_curve/hosp_wave1_all.png){width=400px}
+
+![The first hospitalization wave - parameters](plots/hosp_plots/no_start_curve/hosp_wave1_final_parameters.png){width=400px}
+
+The fit is very close to the observations in all locations. The fitted curve is overestimating hospitalizatons around the dates that the curve starts to level out. However, since healthcare resources were extremely limited during the outbreak of the pandemic, it is safe to overestimate than underestimate hospitalization counts. The final fitted $t_0$ for all locations are indeed a couple of days apart, corresponding to our initial belief. 
+
+
+Observed hospitalization in the second wave seems to be the first half of a regular Richard's growth curve. We do see a gradual increase and then more rapid increase in hospitalization during this period of time. The changes in slopes are tricky to model this time. For the second wave of hospitalization, the initial values are decided as the following: 
+
+* $a$ is $2.2 \times \mbox{max}(hospitalization)$ for all boroughs and NYC, assuming that half of the maximum hospitalization occurs at the inflection point.
+* December 9, 2020 as $t_0$ for all locations.
+* $k$ is the standardized slope for cumulative hospitalization data on 2 days before and after inflection date due to rapid change in hospitalizations around our assumed inflection date.
+* $d$ is 0.25 for Staten Island and 0.5 for all other locations.
+
+Figure ? are plots for fitted curve for the second hospitalization wave. Figure ? are the parameters used to fit the second wave. 
+
+![The second hospitalization wave - fitted curves](plots/hosp_plots/no_start_curve/hosp_wave2_all.png){width=400px}
+
+![The second hospitalization wave - parameters](plots/hosp_plots/predictive/hosp_final_parameters.png){width=400px} 
+
+The fitted curves stil look very close to the observation. We tend to underestimate a little bit when the observed hospitalization is mildy increasing, and overestimate when the speed of the observed increase is growing. 
+
+## Cumulative Deaths
 
 # Task 3
 
