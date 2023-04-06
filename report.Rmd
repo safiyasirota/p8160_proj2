@@ -325,10 +325,35 @@ Figure ? are plots for fitted curve for the second hospitalization wave. Figure 
 
 ![The second hospitalization wave - parameters](plots/hosp_plots/predictive/hosp_final_parameters.png){width=400px} 
 
-The fitted curves stil look very close to the observation. We tend to underestimate a little bit when the observed hospitalization is mildy increasing, and overestimate when the speed of the observed increase is growing. 
+The fitted curves stil look very close to the observation. We tend to underestimate a little bit when the observed hospitalization is mildly increasing, and overestimate when the speed of the observed increase is growing. 
 
 ## Cumulative Deaths
 
 # Task 3
+
+## Cumulative Cases
+
+## Cumulative Hospitalizations
+
+We used the parameters in the fit for second wave of cumulative hospitalizations to make long-term predictions and hope to draw insight on vaccine distribution from the predicted curve.
+
+![Predicted hospitalizations for NYC](plots/hosp_plots/predictive/hosp_nyc_pred.png){width=400px} 
+
+To make our predictions more comparable, we plotted predicted cumulative hospitalizations per 100,000 capita for each borough. 
+
+![Predicted hospitalizations for each borough](plots/hosp_plots/predictive/hosp_all_pred.png){width=400px} 
+
+Unfortunately, Staten Island has the highest predicted cumulative hospitalizations per 100,000 capita and its predicted growth rate is the highest.
+
+Bronx and Manhattan both have the second highest predicted growth rate. But Bronx has the higher predicted hospitalizations per 100,000 capita. 
+
+Even though growth rate and predicted hospitalization per 100,000 capita are different for each borough, the predicted inflection date is almost the same for all boroughs. $t_0 = 85$ corresponds to December 9, 2020. It is also very similar to the predicted inflection date of cumulative cases. This could be a result of rapid disease progression, as people who were contracted need to be hospitalized immediately. 
+
+COVID-19 vaccines first became available in the US on December 14, 2020 according to U.S. Department of Health & Human Services. Therefore, while prioritizing hot spots such as Staten Island and Bronx, the government should also prepare enough inventory to meet needs city-wide to provide maximum protection against COVID-19 due to its rapid disease progression.
+
+
+
+## Cumulative Deaths
+
 
 # Conclusions
