@@ -327,11 +327,11 @@ From the blow figure and estimated parameters, we notice a good recovery of the 
 ![Estimated parameters of cumulative cases for second wave](plots/case_plots/predictive/case_final_parameters.png){width=400px}
 
 ## Cumulative Hospitalizations
-We fit the Richard's growth curve for cumulative hospitalizations in all boroughs in NYC. Similar to case observations, we split hospitalizations into two waves: 1) February 29, 2020 to September 14, 2020; 2) September 14, 2020 to December 11, 2020. 
+We also fit the Richard's growth curve for cumulative hospitalizations in all boroughs in NYC. Similar to case observations, we split hospitalizations into two waves: 1) February 29, 2020 to September 14, 2020; 2) September 14, 2020 to December 11, 2020. 
 
 When fitting the first wave of hospitalizations, we use the following assumptions to pick starting values:
 
-* $a$ is $\mbox{max}(Hospitalizations)$ for all boroughs and NYC, assuming there is not much increase in hospitalization counts or health resources to accommodate patients after the curve levels out. 
+* $a$ is $\mbox{max}(Y_i)$ for all boroughs and NYC, assuming there is not much increase in hospitalization counts or health resources to accommodate patients after the curve levels out. 
 * Different inflection date $t_0$ for different locations, as we observe slopes at different dates fit observations better. There are minor differences among inflection dates. Brooklyn and Manhattan have March 31 as starting value for inflection date; Staten Island has April 1; Queens, Bronx, and NYC have April 3, 2020.
 * $k$ is the standardized slope for cumulative hospitalization data on 4 days before and after inflection date. 
 * $d$ is 0.5
@@ -346,7 +346,7 @@ The fit is very close to the observations in all locations. The fitted curve is 
 
 Observed hospitalization in the second wave seems to be the first half of a regular Richard's growth curve. We do see a gradual increase and then more rapid increase in hospitalization during this period of time. The changes in slopes are tricky to model this time. For the second wave of hospitalization, the initial values are decided as the following: 
 
-* $a$ is $2.2 \times \mbox{max}(hospitalization)$ for all boroughs and NYC, assuming that half of the maximum hospitalization occurs at the inflection point.
+* $a$ is $2.2 \times \mbox{max}(Y_i)$ for all boroughs and NYC, assuming that half of the maximum hospitalization occurs at the inflection point.
 * December 9, 2020 as $t_0$ for all locations.
 * $k$ is the standardized slope for cumulative hospitalization data on 2 days before and after inflection date due to rapid change in hospitalizations around our assumed inflection date.
 * $d$ is 0.25 for Staten Island and 0.5 for all other locations.
@@ -413,7 +413,7 @@ Therefore, based on the previous prediction and observation, we would suggestion
 
 ## Cumulative Hospitalizations
 
-We used the parameters in the fit for second wave of cumulative hospitalizations to make long-term predictions and hope to draw insight on vaccine distribution from the predicted curve.
+We used the parameters in the fit for second wave of cumulative hospitalizations to make long-term predictions and hope to draw insight on vaccine distribution from the predicted curve. Plots for our prediction are in Figure 13 and 14. 
 
 ![Predicted hospitalization for NYC](plots/hosp_plots/predictive/hosp_nyc_pred.png){width=400px} 
 
