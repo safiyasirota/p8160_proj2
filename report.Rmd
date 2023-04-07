@@ -124,7 +124,7 @@ In step 1 of the algorithm, the user is required to choose the starting values, 
 
 * Since $d$ has no epidemiological interpretation, picking its starting value is tricky. We found that values between 0 and 0.5 worked well. However, we advise investigators to try a few different values for $d$ and pick what works best.
 
-Figure XXX gives an example of how a starting curve for Wave 1 data on NYC would look, compared to the final fitted curve. We can see that the starting curve follows the general trend of the observed cumulative cases, but the final curve obtained from running our algorithm fits the observed data much better. We also note that from about $t_i = 100$ to $t_i = 200$ of the first wave, the observed cumulative cases follow a linear trend, so we would expect that our final Richard growth curve will never be able to fit the observed data very well in this portion of the wave since the Richard growth function assumes a sigmoidal shape.
+Figure 2 gives an example of how a starting curve for Wave 1 data on NYC would look, compared to the final fitted curve. We can see that the starting curve follows the general trend of the observed cumulative cases, but the final curve obtained from running our algorithm fits the observed data much better. We also note that from about $t_i = 100$ to $t_i = 200$ of the first wave, the observed cumulative cases follow a linear trend, so we would expect that our final Richard growth curve will never be able to fit the observed data very well in this portion of the wave since the Richard growth function assumes a sigmoidal shape.
 
 The algorithm described in this section was also used in Task 1.2 to fit Richard curves to each NYC borough's cumulative number of hospitalizations and deaths for each pandemic wave. 
 
@@ -325,8 +325,6 @@ From the blow figure and estimated parameters, we notice a good recovery of the 
 ![Fitted curves of cumulative cases for second wave](plots/case_plots/no_start_curve/wave2_all.png){width=400px}
 
 ![Estimated parameters of cumulative cases for second wave](plots/case_plots/predictive/case_final_parameters.png){width=400px}
- 
-
 
 ## Cumulative Hospitalizations
 We fit the Richard's growth curve for cumulative hospitalizations in all boroughs in NYC. Similar to case observations, we split hospitalizations into two waves: 1) February 29, 2020 to September 14, 2020; 2) September 14, 2020 to December 11, 2020. 
@@ -338,7 +336,7 @@ When fitting the first wave of hospitalizations, we use the following assumption
 * $k$ is the standardized slope for cumulative hospitalization data on 4 days before and after inflection date. 
 * $d$ is 0.5
 
-Figure ? are plots for fitted curve for the first hospitalization wave. Figure ? are the parameters used to fit the first wave. 
+Figure 7 are plots for fitted curve for the first hospitalization wave. Figure 8 are the parameters used to fit the first wave. 
 
 ![The first hospitalization wave - fitted curves](plots/hosp_plots/no_start_curve/hosp_wave1_all.png){width=400px}
 
@@ -353,20 +351,53 @@ Observed hospitalization in the second wave seems to be the first half of a regu
 * $k$ is the standardized slope for cumulative hospitalization data on 2 days before and after inflection date due to rapid change in hospitalizations around our assumed inflection date.
 * $d$ is 0.25 for Staten Island and 0.5 for all other locations.
 
-Figure ? are plots for fitted curve for the second hospitalization wave. Figure ? are the parameters used to fit the second wave. 
+Figure 9 are plots for fitted curve for the second hospitalization wave. Figure 10 are the parameters used to fit the second wave. 
 
-![The second hospitalization wave - fitted curves](plots/hosp_plots/no_start_curve/hosp_wave2_all.png){width=400px}
+![The second hospitalization wave - fitted curves](plots/hosp_plots/no_start_curve/hosp_wave2_all.png){width=300px}
 
 ![The second hospitalization wave - parameters](plots/hosp_plots/predictive/hosp_final_parameters.png){width=400px} 
 
 The fitted curves still look very close to the observation. We tend to underestimate when the observed hospitalization is mildly increasing, and overestimate when the speed of the observed increase is growing. The estimate values for growth rate parameter $k$ reflect how different the slope changes in each borough. 
 
 ## Cumulative Deaths
+We also fit growth curves to estimate cumulative deaths in NYC. We split the deaths into two waves, in the same way as mentioned previously.
+
+We use the following assumptions to pick starting values:
+
+* $a$ is $\mbox{max}(Deaths)$ for all boroughs and NYC. 
+* All locations have the same starting value $t_0$, which is April 10, 2020. This inflection point is later than the ones assumed for cases and hospitalizations, as we assume that a rise in deaths will trail several days behind rises in cases and hospitalizations.
+* $k$ is the standardized slope for cumulative deaths data on 4 days before and after inflection date. 
+* $d$ is 0.5.
+
+Figure 11 shows plots for fitted death curves for the first wave. Figure 12 shows the final parameters used to fit the first wave curves.
+
+![The first death wave - fitted curves](plots/death_plots/wave1_plots.png){width=400px}
+
+![The first death wave - parameters](plots/death_plots/death_table_1.png){width=400px}
+
+The estimated Richard's curve fits the observed deaths curve very well for each borough. is very close to the observations in all locations.
+
+For the second wave of deaths, the initial values are decided as the following: 
+
+* $a$ is $2 \times \mbox{max}(Deaths)$ for all boroughs and NYC, assuming that half of the maximum deaths occur at the inflection point.
+* December 9, 2020 as $t_0$ for all locations. We would assume that the inflection point would be later for deaths than it is for cases and hospitalizations, but since we only have data until December 11, it did not make sense to try to push the starting inflection date further.
+* $k$ is the standardized slope for cumulative deaths data on 2 days before and after the inflection date.
+* $d$ is 0.25 for Staten Island and 0.5 for all other locations.
+
+Figure 13 are plots for fitted curve for the second death wave. Figure 14 shows the final parameters used to fit the second wave. 
+
+![The second death wave - fitted curves](plots/death_plots/wave2_plots.png){width=400px}
+
+
+![The second death wave - parameters](plots/death_plots/deaths_final_prarameters.png){width=400px}
+
+The fitted curves look relatively close to the observed death trends. The shapes of the curves across boroughs seem very different, showing that the predicted trends in deaths by the end of the second wave will vary across boroughs.
+
 
 # Task 3
 
 ## Cumulative Cases
-From previous task, we successfully estimated and obtained parameters that approximated the first half of the second wave data well. A natural extrapolation would be extending the curves so that we may predict the cumulative cases based on th observed the data. Hence, we utilize the estimated final parameters and use that for cumulative cases prediction. 
+From the previous task, we successfully estimated and obtained parameters that approximated the first half of the second wave data well. A natural extrapolation would be extending the curves so that we may predict the cumulative cases based on th observed the data. Hence, we utilize the estimated final parameters and use that for cumulative cases prediction. 
 
 We incorporate borough population to infer cases per 100,000 capita so that based on the y axis we are able to make a direct comparison of the severity of the second wave. Based on the interpretation of the estimated parameters, we obtained the following observations:
 
@@ -376,11 +407,9 @@ We incorporate borough population to infer cases per 100,000 capita so that base
 Therefore, based on the previous prediction and observation, we would suggestion that distributing vaccination to the boroughs with higher predicted cumulative cases per capita and large rate of cases increase. In this case, Staten Island should be prioritized for vaccination rollout. 
 
 
-![Predicted cases for each borough](plots/case_plots/predictive/all_pred.png){width=400px} 
+![Predicted cases for each borough](plots/case_plots/predictive/all_pred.png){width=300px} 
 
-![Estimated parameters of cumulative cases for second wave](plots/case_plots/predictive/case_final_parameters.png){width=400px}
-
-
+![Estimated parameters of cumulative cases for second wave](plots/case_plots/predictive/case_final_parameters.png){width=300px}
 
 ## Cumulative Hospitalizations
 
@@ -400,9 +429,23 @@ Even though growth rate and predicted hospitalization per 100,000 capita are dif
 
 COVID-19 vaccines first became available in the US on December 14, 2020 according to U.S. Department of Health & Human Services. Therefore, while prioritizing hot spots such as Staten Island and Bronx, the government should also prepare enough inventory to meet needs city-wide to provide maximum protection against COVID-19 due to its rapid disease progression.
 
-
-
 ## Cumulative Deaths
 
+The predicted plots for cumulative deaths in the second wave, scaled for population size, for each borough are shown below in Figure 19.
+
+![Predicted hospitalization for NYC](plots/death_plots/predictive/all_pred.png){width=400px} 
+
+Based on the final parameters shown in Figure 14, we see that Brooklyn and Manhattan have the highest estimated k values (slope at the inflection point). Brooklyn and Queens have the highest number of estimated cumulative deaths. Staten Island is consistently predicted to increase quickly and have a high rate of deaths overall. 
+
+When we scale for population in the plots in the figure above, we see that Brooklyn and the Bronx actually have the highest number of predicted cumulative deaths per 100,000 capita. 
+
+Interestingly, in Brooklyn and the Bronx, cases aren't expected to increase at a quick rate, but hospitalizations and deaths are. This would give us motivation us to roll out vaccinations quickly to Brooklyn and the Bronx, to prevent severe cases and therefore hospitalizations and deaths.
 
 # Conclusions
+
+_Task 1._ Richard's growth curves fit relatively well to COVID-19 case, hospitalization, and death data when starting values were chosen well and waves were specified appropriately.
+
+_Task 2._ From fitting the curves, we learned that Brooklyn and Queens had experienced the greatest number of cases, hospitalizations, and deaths by the end of each wave. Empirically, curves varied more between boroughs during the second wave than during the first.
+
+_Task 3._ Extending our wave 2 fitted curves and accounting for each borough's population size allowed us to make recommendations for vaccine rollout. We recommend that, if the number of vaccines is limited, that we target Staten Island, which is expected to see the largest number of cases, deaths, and hospitalizations per capita. We also suggest rolling out vaccines quickly to Brooklyn and the Bronx, where the number of hospitalizations and deaths are expected to be large and to increase at a quick rate around the inflection point. It is important to target these areas because we noticed that even though the number of cases may be lower, the large amount of hospitalizations and deaths tells us that COVID-19 may take a large toll on healthcare facilities in these areas.
+

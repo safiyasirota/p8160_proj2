@@ -2,7 +2,7 @@
 title: "Modeling Deaths"
 author: "Safiya Sirota"
 date: "2023-03-30"
-output: html_document
+output: pdf_document
 ---
 # Set up
 
@@ -197,6 +197,64 @@ death_wave1_nyc <- df_wave1_nyc %>%
 
 ggarrange(death_wave1_nyc, death_wave1_bx, death_wave1_bk, death_wave1_mn, death_wave1_qn, death_wave1_si,  nrow = 2, ncol = 3)
 ```
+
+## Wave 1 final parameters
+
+```{r}
+final_nyc_parameter <- 
+  tibble(
+    a = final_nyc[["a"]], 
+    k = final_nyc[["k"]],
+    d = final_nyc[["d"]],  
+    t0 = final_nyc[["t0"]]) %>% 
+  mutate(location = "New York City")
+
+final_bk_parameter <- 
+  tibble(
+    a = final_bk[["a"]], 
+    k = final_bk[["k"]],
+    d = final_bk[["d"]],  
+    t0 = final_bk[["t0"]]) %>% 
+  mutate(location = "Brooklyn")
+
+final_bx_parameter <- 
+  tibble(
+    a = final_bx[["a"]], 
+    k = final_bx[["k"]],
+    d = final_bx[["d"]],  
+    t0 = final_bx[["t0"]]) %>% 
+  mutate(location = "Bronx")
+
+final_mn_parameter <- 
+  tibble(
+    a = final_mn[["a"]], 
+    k = final_mn[["k"]],
+    d = final_mn[["d"]],  
+    t0 = final_mn[["t0"]]) %>% 
+  mutate(location = "Manhattan")
+
+final_qn_parameter <- 
+  tibble(
+    a = final_qn[["a"]], 
+    k = final_qn[["k"]],
+    d = final_qn[["d"]],  
+    t0 = final_qn[["t0"]]) %>% 
+  mutate(location = "Queens")
+
+final_si_parameter <- 
+  tibble(
+    a = final_si[["a"]], 
+    k = final_si[["k"]],
+    d = final_si[["d"]],  
+    t0 = final_si[["t0"]]) %>% 
+  mutate(location = "Staten Island")
+
+bind_rows(final_nyc_parameter, final_bk_parameter,final_bx_parameter, final_mn_parameter,
+          final_qn_parameter, final_si_parameter) %>%
+  knitr::kable() 
+```
+
+
 
 # Wave 2
 
